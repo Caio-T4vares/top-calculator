@@ -44,9 +44,12 @@ function multiply(firstOperand, secondOperand) {
 }
 
 function divide(firstOperand, secondOperand) {
+  if (secondOperand === 0) {
+    alert("Divide by zero it's not suported!");
+    return;
+  }
   return firstOperand / secondOperand;
 }
-
 function operate(firstOperand, secondOperand, operator) {
   switch (operator) {
     case "+":
