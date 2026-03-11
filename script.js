@@ -22,11 +22,13 @@ clearKey.addEventListener("click", () => {
 
 const equalKey = document.querySelector("#equal-key");
 equalKey.addEventListener("click", () => {
-  firstOperand = operate(+firstOperand, +secondOperand, operator);
-  if (!Number.isInteger(firstOperand)) firstOperand = firstOperand.toFixed(2);
-  secondOperand = "";
-  operator = "";
-  attDisplay();
+  if (firstOperand !== "" && secondOperand !== "") {
+    firstOperand = operate(+firstOperand, +secondOperand, operator);
+    if (!Number.isInteger(firstOperand)) firstOperand = firstOperand.toFixed(2);
+    secondOperand = "";
+    operator = "";
+    attDisplay();
+  }
 });
 
 function add(firstOperand, secondOperand) {
