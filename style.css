@@ -29,6 +29,7 @@ body {
   align-items: center;
 
   font-size: 64px;
+  text-wrap: wrap;
 }
 
 #calculator > div {

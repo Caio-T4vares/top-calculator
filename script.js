@@ -24,7 +24,6 @@ const equalKey = document.querySelector("#equal-key");
 equalKey.addEventListener("click", () => {
   firstOperand = operate(+firstOperand, +secondOperand, operator);
   if (!Number.isInteger(firstOperand)) firstOperand = firstOperand.toFixed(2);
-  console.log(firstOperand);
   secondOperand = "";
   operator = "";
   attDisplay();
@@ -57,16 +56,17 @@ function operate(firstOperand, secondOperand, operator) {
     case "/":
       return divide(firstOperand, secondOperand);
     default:
-      alert("Invalid operator");
-      return NaN;
+      alert("Invalid operation");
   }
 }
 
 function handleInput(input) {
   if (input === "/" || input === "+" || input === "-" || input === "*") {
     if (display.textContent === "") return;
-    if (operator !== "") {
+    if (operator !== "" && firstOperand !== "" && secondOperand !== "") {
       firstOperand = operate(+firstOperand, +secondOperand, operator);
+      if (!Number.isInteger(firstOperand))
+        firstOperand = firstOperand.toFixed(2);
       secondOperand = "";
     }
     operator = input;
