@@ -1,6 +1,16 @@
-const firstOperand = 0;
-const secondOperand = 0;
-const operator = "";
+let firstOperand = "";
+let secondOperand = "";
+let operator = "";
+
+const display = document.querySelector("#display");
+const keys = document.querySelectorAll(".key");
+
+keys.forEach((key) => {
+  key.addEventListener("click", (e) => {
+    const keyValue = key.textContent;
+    handleInput(keyValue);
+  });
+});
 
 function add(firstOperand, secondOperand) {
   return firstOperand + secondOperand;
@@ -32,4 +42,18 @@ function operate(firstOperand, secondOperand, operator) {
       alert("Invalid operator");
       return NaN;
   }
+}
+
+function handleInput(input) {
+  if (input === "/" || input === "+" || input === "-" || input === "*") {
+    if (display.textContent === "") return;
+    operator = input;
+  } else if (operator) secondOperand += input;
+  else firstOperand += input;
+
+  attDisplay();
+}
+
+function attDisplay() {
+  display.textContent = `${firstOperand}${operator}${secondOperand}`;
 }
