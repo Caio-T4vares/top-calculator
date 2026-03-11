@@ -8,9 +8,6 @@ const keys = document.querySelectorAll(".key");
 
 keys.forEach((key) => {
   key.addEventListener("click", (e) => {
-    if (isResult) {
-      clearKey.dispatchEvent(new Event("click"));
-    }
     const keyValue = e.target.textContent;
     handleInput(keyValue);
   });
@@ -73,6 +70,7 @@ function operate(firstOperand, secondOperand, operator) {
 
 function handleInput(input) {
   if (input === "/" || input === "+" || input === "-" || input === "*") {
+    isResult = false;
     if (display.textContent === "") return;
     if (operator !== "" && firstOperand !== "" && secondOperand !== "") {
       firstOperand = operate(+firstOperand, +secondOperand, operator);
@@ -81,8 +79,17 @@ function handleInput(input) {
       secondOperand = "";
     }
     operator = input;
-  } else if (operator) secondOperand += input;
-  else firstOperand += input;
+  } else if (operator) {
+    if (isResult) {
+      clearKey.dispatchEvent(new Event("click"));
+    }
+    secondOperand += input;
+  } else {
+    if (isResult) {
+      clearKey.dispatchEvent(new Event("click"));
+    }
+    firstOperand += input;
+  }
 
   attDisplay();
 }
