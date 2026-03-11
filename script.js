@@ -22,7 +22,9 @@ clearKey.addEventListener("click", () => {
 
 const equalKey = document.querySelector("#equal-key");
 equalKey.addEventListener("click", () => {
-  firstOperand = operate(+firstOperand, +secondOperand, operator).toFixed(2);
+  firstOperand = operate(+firstOperand, +secondOperand, operator);
+  if (!Number.isInteger(firstOperand)) firstOperand = firstOperand.toFixed(2);
+  console.log(firstOperand);
   secondOperand = "";
   operator = "";
   attDisplay();
@@ -63,6 +65,10 @@ function operate(firstOperand, secondOperand, operator) {
 function handleInput(input) {
   if (input === "/" || input === "+" || input === "-" || input === "*") {
     if (display.textContent === "") return;
+    if (operator !== "") {
+      firstOperand = operate(+firstOperand, +secondOperand, operator);
+      secondOperand = "";
+    }
     operator = input;
   } else if (operator) secondOperand += input;
   else firstOperand += input;
