@@ -7,17 +7,25 @@ const keys = document.querySelectorAll(".key");
 
 keys.forEach((key) => {
   key.addEventListener("click", (e) => {
-    const keyValue = key.textContent;
+    const keyValue = e.target.textContent;
     handleInput(keyValue);
   });
 });
 
 const clearKey = document.querySelector("#clear-key");
-clearKey.addEventListener("click", (e) => {
+clearKey.addEventListener("click", () => {
   display.textContent = "";
   firstOperand = "";
   secondOperand = "";
   operator = "";
+});
+
+const equalKey = document.querySelector("#equal-key");
+equalKey.addEventListener("click", () => {
+  firstOperand = operate(+firstOperand, +secondOperand, operator).toFixed(2);
+  secondOperand = "";
+  operator = "";
+  attDisplay();
 });
 
 function add(firstOperand, secondOperand) {
