@@ -12,6 +12,14 @@ keys.forEach((key) => {
   });
 });
 
+const clearKey = document.querySelector("#clear-key");
+clearKey.addEventListener("click", (e) => {
+  display.textContent = "";
+  firstOperand = "";
+  secondOperand = "";
+  operator = "";
+});
+
 function add(firstOperand, secondOperand) {
   return firstOperand + secondOperand;
 }
