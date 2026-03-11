@@ -1,12 +1,16 @@
 let firstOperand = "";
 let secondOperand = "";
 let operator = "";
+let isResult = false;
 
 const display = document.querySelector("#display");
 const keys = document.querySelectorAll(".key");
 
 keys.forEach((key) => {
   key.addEventListener("click", (e) => {
+    if (isResult) {
+      clearKey.dispatchEvent(new Event("click"));
+    }
     const keyValue = e.target.textContent;
     handleInput(keyValue);
   });
@@ -18,6 +22,7 @@ clearKey.addEventListener("click", () => {
   firstOperand = "";
   secondOperand = "";
   operator = "";
+  isResult = false;
 });
 
 const equalKey = document.querySelector("#equal-key");
@@ -27,6 +32,7 @@ equalKey.addEventListener("click", () => {
     if (!Number.isInteger(firstOperand)) firstOperand = firstOperand.toFixed(2);
     secondOperand = "";
     operator = "";
+    isResult = true;
     attDisplay();
   }
 });
